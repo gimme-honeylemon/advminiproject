@@ -1,0 +1,38 @@
+services:
+  nextjs:
+    container_name: nextjs
+    build:
+      context: ./nextjs
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./nextjs:/src
+      - /src/node_modules
+    working_dir: /src
+    command: npm run dev
+
+#   db:
+#     image: postgres:13
+#     container_name: husinzaly_ayuu
+#     ports:
+#       - "5432:5432"
+#     environment:
+#       POSTGRES_USER: temp
+#       POSTGRES_PASSWORD: temp
+#       POSTGRES_DB: advcompro
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data
+
+#   fastapi:
+#     build:
+#       context: ./fastapi
+#     ports:
+#       - "8008:8008"
+#     volumes:
+#       - ./fastapi:/src
+#     command: uvicorn app:app --host 0.0.0.0 --port 8008 --reload
+#     depends_on:
+#       - db
+
+# volumes:
+#   postgres_data:
