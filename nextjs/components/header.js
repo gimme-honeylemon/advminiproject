@@ -1,7 +1,7 @@
 export default function Header() {
     return(
     <h1>
-      HSU INZALY AYUU MA GYI
+      L'heure Bleue
     </h1>
     );
 }
