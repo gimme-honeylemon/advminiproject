@@ -1,7 +1,7 @@
 export default function Header() {
     return(
     <h1>
-      Hsu Inzali
+      Wendy
     </h1>
     );
 }
