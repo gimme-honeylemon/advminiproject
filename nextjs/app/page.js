@@ -12,7 +12,6 @@ export default function Home() {
   return (
     <>
       <Header />
-      <Header />
       <Button variant="contained" sx={{ width: {sx: "200px", sm: "300px", md: "400px"} }}>
         Button button
       </Button>
