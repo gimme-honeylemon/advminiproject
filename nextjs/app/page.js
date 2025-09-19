@@ -6,13 +6,14 @@ import { Button, Box } from "@mui/material";
 import Header from "@/components/header"
 import MenuCard from "@/components/MenuCard";
 import Logintextbox from "@/components/Logintextbox";
-
+import Carticon from "@/components/Carticon";
 
 export default function Home() {
   return (
     <>
       <Header />
       <Header />
+      <Carticon />
       <Button variant="contained" sx={{ width: {sx: "200px", sm: "300px", md: "400px"} }}>
         Button button
       </Button>
