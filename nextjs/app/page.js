@@ -12,8 +12,11 @@ export default function Home() {
   return (
     <>
       <Header />
+<<<<<<< HEAD
       <Header />
       <Carticon />
+=======
+>>>>>>> b423f6a0d2af9b49928a83c8b3505cf7045503e4
       <Button variant="contained" sx={{ width: {sx: "200px", sm: "300px", md: "400px"} }}>
         Button button
       </Button>
