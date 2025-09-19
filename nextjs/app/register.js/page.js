@@ -96,20 +96,15 @@ export default function RegisterPage() {
               
               {/* Coffee beans image */}
               <Box
+                component="img"
+                src="https://i.pinimg.com/736x/82/d5/97/82d597f5602bc309037a588ffe7c03e6.jpg"
+                alt="Arabica Coffee"
                 sx={{
                   width: 200,
                   height: 200,
-                  borderRadius: '50%',
                   margin: '0 auto 2rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  backgroundImage: 'url(https://i.pinimg.com/736x/82/d5/97/82d597f5602bc309037a588ffe7c03e6.jpg)',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat'
+                  display: 'block',
+                  borderRadius: 2
                 }}
               />
               
