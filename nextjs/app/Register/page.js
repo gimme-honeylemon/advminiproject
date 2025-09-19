@@ -59,63 +59,27 @@ export default function RegisterPage() {
     >
       <Container maxWidth="lg">
         <Grid container spacing={4} alignItems="center">
-          {/* Left Column - Coffee Information */}
+          {/* Left Column - Coffee Image */}
           <Grid item xs={12} md={6}>
             <Box
               sx={{
-                backgroundColor: '#8B4513',
-                borderRadius: 3,
-                padding: 4,
-                color: 'white',
-                textAlign: 'center',
-                position: 'relative',
-                overflow: 'hidden'
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100%'
               }}
             >
-              <Typography
-                variant="h4"
-                sx={{
-                  fontWeight: 'bold',
-                  fontSize: '1.5rem',
-                  marginBottom: 1
-                }}
-              >
-                ARABICA COFFEE
-              </Typography>
-              <Typography
-                variant="subtitle1"
-                sx={{
-                  fontSize: '1rem',
-                  opacity: 0.8,
-                  marginBottom: 3
-                }}
-              >
-                Coffea Arabica
-              </Typography>
-              
               {/* Coffee beans image */}
               <Box
                 component="img"
                 src="https://i.pinimg.com/736x/82/d5/97/82d597f5602bc309037a588ffe7c03e6.jpg"
                 alt="Arabica Coffee"
                 sx={{
-                  width: 200,
-                  height: 200,
-                  margin: '0 auto 2rem',
-                  display: 'block',
+                  maxWidth: '100%',
+                  height: 'auto',
                   borderRadius: 2
                 }}
               />
-              
-              <Typography
-                sx={{
-                  fontSize: '0.9rem',
-                  lineHeight: 1.6,
-                  opacity: 0.9
-                }}
-              >
-                Is known for its smooth, complex, and often sweet flavor, with notes of fruit, chocolate, nuts, or floral tones depending on its origin and how it's roasted.
-              </Typography>
             </Box>
           </Grid>
 
