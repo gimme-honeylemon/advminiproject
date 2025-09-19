@@ -2,7 +2,7 @@ export default function cart() {
     return (
         <>
         <h1>
-        Hsu
+        Cart
         </h1>
         </>
     );

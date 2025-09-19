@@ -53,11 +53,11 @@ export default function LoginPage() {
           <Typography
             variant="h2"
             style={{
-              fontFamily: "Cinzel",
+              fontFamily: "var(--font-dancing-script), cursive",
               color: "#2E4265",
               marginBottom: 40,
               textAlign: "center",
-              textShadow: "2px 2px 4px rgba(0,0,0,0.2)",
+              textShadow: "2px 2px 4px rgba(1, 1, 1, 0.2)",
             }}
           >
             L'heure bleue
