@@ -94,30 +94,24 @@ export default function RegisterPage() {
                 Coffea Arabica
               </Typography>
               
-              {/* Coffee beans image placeholder */}
+              {/* Coffee beans image */}
               <Box
                 sx={{
                   width: 200,
                   height: 200,
                   borderRadius: '50%',
-                  backgroundColor: '#A0522D',
                   margin: '0 auto 2rem',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   position: 'relative',
-                  overflow: 'hidden'
+                  overflow: 'hidden',
+                  backgroundImage: 'url(https://i.pinimg.com/736x/82/d5/97/82d597f5602bc309037a588ffe7c03e6.jpg)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat'
                 }}
-              >
-                <Typography
-                  sx={{
-                    fontSize: '3rem',
-                    opacity: 0.7
-                  }}
-                >
-                  ☕
-                </Typography>
-              </Box>
+              />
               
               <Typography
                 sx={{
