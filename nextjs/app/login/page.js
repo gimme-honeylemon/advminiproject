@@ -127,7 +127,7 @@ export default function LoginPage() {
                   borderRadius: '80px',
                   backgroundColor: '#2E4265',
                   color: '#FFFFFF',
-                  '&:hover': { backgroundColor: '#1F2D4D' },
+                  '&:hover': { backgroundColor: '#ffffffff', color: '#2E4265' },
                 }}
               >
                 Sign in
