@@ -7,7 +7,7 @@ export default function Header() {
       height: "100vh"
     }}>
       <h1 style={{
-        fontFamily: "Kapakana, sans-serif",
+        fontFamily: "'Poppins', sans-serif",
         fontSize: "150px",
         color: "#2E4265"
       }}>

@@ -97,7 +97,7 @@ export default function RegisterPage() {
               <Typography
                 variant="h2"
                 sx={{
-                  fontFamily: "var(--font-dancing-script), cursive",
+                  fontFamily: "'Poppins', sans-serif",
                   color: "#2E4265",
                   marginBottom: 2,
                   textAlign: "center",

@@ -53,7 +53,7 @@ export default function LoginPage() {
           <Typography
             variant="h2"
             style={{
-              fontFamily: "var(--font-dancing-script), cursive",
+              fontFamily: "'Poppins', sans-serif",
               color: "#2E4265",
               marginBottom: 40,
               textAlign: "center",
@@ -127,7 +127,7 @@ export default function LoginPage() {
                   borderRadius: '80px',
                   backgroundColor: '#2E4265',
                   color: '#FFFFFF',
-                  '&:hover': { backgroundColor: '#ffffffff', color: '#2E4265' },
+                  '&:hover': { backgroundColor: '#8C9EBE', color: '#2E4265' },
                 }}
               >
                 Sign in
