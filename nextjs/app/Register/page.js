@@ -77,7 +77,7 @@ export default function RegisterPage() {
                 sx={{
                   maxWidth: '100%',
                   height: 'auto',
-                  borderRadius: 2
+                  borderRadius: '60px'
                 }}
               />
             </Box>
