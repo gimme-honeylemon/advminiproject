@@ -123,7 +123,8 @@ export default function LoginPage() {
                 sx={{
                   height: 56,
                   width: 167,
-                  borderRadius: 28,
+                  fontWeight: 'bold',
+                  borderRadius: '80px',
                   backgroundColor: '#2E4265',
                   color: '#FFFFFF',
                   '&:hover': { backgroundColor: '#1F2D4D' },
@@ -138,7 +139,8 @@ export default function LoginPage() {
                 sx={{
                   height: 56,
                   width: 167,
-                  borderRadius: 28,
+                  fontWeight: 'bold',
+                  borderRadius: '80px',
                   backgroundColor: '#8C9EBE',
                   color: '#2E4265',
                   '&:hover': { backgroundColor: '#2E4265', color: '#FFFFFF' },
