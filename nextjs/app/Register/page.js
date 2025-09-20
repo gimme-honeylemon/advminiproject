@@ -96,7 +96,7 @@ export default function RegisterPage() {
               <Typography
                 variant="h2"
                 sx={{
-                  fontFamily: "var(--font-dancing-script), cursive",
+                  fontFamily: "Fira Code iScript, Menlo, Monaco, 'Courier New', monospace",
                   color: "#2E4265",
                   marginBottom: 2,
                   textAlign: "center",
