@@ -2,28 +2,53 @@
 
 import React, { useState } from "react";
 import { TextField, Button, Grid, Typography, FormControlLabel, Checkbox, Link, Snackbar, Alert } from '@mui/material';
-import { useRouter } from "next/navigation"; // ✅ import router
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
-  const router = useRouter(); // ✅ initialize router
+  const router = useRouter();
 
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+  const [acceptTerms, setAcceptTerms] = useState(false);
+
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarSeverity, setSnackbarSeverity] = useState('success');
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
+
     if (!loginEmail || !loginPassword) {
       setSnackbarMessage('Please enter email and password');
       setSnackbarSeverity('error');
       setOpenSnackbar(true);
       return;
     }
+
+    // ✅ Email validation with regex (strict check)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(loginEmail)) {
+      setSnackbarMessage('Please enter a valid email address');
+      setSnackbarSeverity('error');
+      setOpenSnackbar(true);
+      return;
+    }
+
+    if (!acceptTerms) {
+      setSnackbarMessage('Please accept the Terms and Conditions');
+      setSnackbarSeverity('warning');
+      setOpenSnackbar(true);
+      return;
+    }
+
+    // ✅ all good
     setSnackbarMessage('Login successful!');
     setSnackbarSeverity('success');
     setOpenSnackbar(true);
+
+    setTimeout(() => {
+      router.push("/"); // main page
+    }, 1000);
   };
 
   const handleSnackbarClose = () => {
@@ -31,13 +56,18 @@ export default function LoginPage() {
   };
 
   const handleRegister = () => {
-    router.push("/Register"); // ✅ goes to /register page
+    router.push("/Register");
   };
 
   return (
     <Grid
       container
-      style={{ minHeight: '100vh', justifyContent: 'center', alignItems: 'center', backgroundColor: '#FCFAF8' }}
+      style={{
+        minHeight: '100vh',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#FCFAF8',
+      }}
     >
       <Grid item>
         <form
@@ -69,7 +99,7 @@ export default function LoginPage() {
             label="Email address"
             variant="outlined"
             margin="normal"
-            type="email"
+            type="text" // ✅ changed from "email" to "text" to allow regex validation properly
             value={loginEmail}
             onChange={(e) => setLoginEmail(e.target.value)}
             sx={{ height: 56 }}
@@ -86,10 +116,20 @@ export default function LoginPage() {
           />
 
           {/* Checkboxes and Forgot password */}
-          <Grid container alignItems="center" justifyContent="space-between" style={{ marginTop: 10 }}>
+          <Grid
+            container
+            alignItems="center"
+            justifyContent="space-between"
+            style={{ marginTop: 10 }}
+          >
             <Grid item xs={10}>
               <FormControlLabel
-                control={<Checkbox />}
+                control={
+                  <Checkbox
+                    checked={acceptTerms}
+                    onChange={(e) => setAcceptTerms(e.target.checked)}
+                  />
+                }
                 label="I accept the Terms and Conditions"
                 sx={{ color: "#2E4265" }}
               />
@@ -135,7 +175,7 @@ export default function LoginPage() {
             </Grid>
             <Grid item>
               <Button
-                onClick={handleRegister} // ✅ navigate when clicked
+                onClick={handleRegister}
                 sx={{
                   height: 56,
                   width: 167,
@@ -152,8 +192,17 @@ export default function LoginPage() {
           </Grid>
         </form>
 
-        <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleSnackbarClose}>
-          <Alert onClose={handleSnackbarClose} severity={snackbarSeverity} sx={{ width: '100%' }}>
+        {/* Snackbar */}
+        <Snackbar
+          open={openSnackbar}
+          autoHideDuration={3000}
+          onClose={handleSnackbarClose}
+        >
+          <Alert
+            onClose={handleSnackbarClose}
+            severity={snackbarSeverity}
+            sx={{ width: '100%' }}
+          >
             {snackbarMessage}
           </Alert>
         </Snackbar>
