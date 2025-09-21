@@ -57,7 +57,7 @@ export default function CartPage() {
       {/* Header */}
       <Box
         sx={{
-          backgroundColor: '#8C9EBE',
+          backgroundColor: '#E0EBFF',
           padding: 3,
           display: 'flex',
           alignItems: 'center',
@@ -127,7 +127,7 @@ export default function CartPage() {
             sx={{
               textAlign: 'center',
               padding: 6,
-              backgroundColor: '#8C9EBE',
+              backgroundColor: '#E0EBFF',
               borderRadius: 3,
               marginBottom: 4,
               opacity: 0.8
@@ -267,7 +267,7 @@ export default function CartPage() {
         {/* Cart Footer */}
         <Box
           sx={{
-            backgroundColor: '#8C9EBE',
+            backgroundColor: '#E0EBFF',
             borderRadius: 3,
             padding: 3,
             position: 'sticky',
@@ -316,7 +316,7 @@ export default function CartPage() {
                   fontWeight: 'bold',
                   fontSize: '1.1rem',
                   '&:hover': { backgroundColor: '#1F2D4D' },
-                  '&:disabled': { backgroundColor: '#8C9EBE' }
+                  '&:disabled': { backgroundColor: '#E0EBFF' }
                 }}
                 disabled={totalItems === 0}
               >
