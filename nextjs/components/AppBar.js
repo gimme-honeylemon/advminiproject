@@ -13,7 +13,7 @@ export default function ButtonAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: "#8C9EBE", height: "130px" }}>
+      <AppBar sx={{ backgroundColor: "#8C9EBE", height: "100px" , position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1100}}>
         <Toolbar
           sx={{
             display: "flex",
@@ -28,7 +28,7 @@ export default function ButtonAppBar() {
             sx={{
               fontFamily: "Poppins, sans-serif",
               fontWeight: 600,
-              fontSize: "25px",
+              fontSize: "20px",
               color: "white",
               '&:hover': { color: '#1F2D4D' },
             }}
@@ -40,7 +40,7 @@ export default function ButtonAppBar() {
             sx={{
               fontFamily: "Poppins, sans-serif",
               fontWeight: 600,
-              fontSize: "25px",
+              fontSize: "20px",
               color: "white",
               '&:hover': { color: '#1F2D4D' },
             }}
@@ -52,7 +52,7 @@ export default function ButtonAppBar() {
             sx={{
               fontFamily: "Poppins, sans-serif",
               fontWeight: 600,
-              fontSize: "25px",
+              fontSize: "20px",
               color: "white",
               '&:hover': { color: '#1F2D4D' },
             }}
