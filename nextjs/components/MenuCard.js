@@ -5,7 +5,7 @@ import { Card, Typography, Box, IconButton, Snackbar, Alert } from '@mui/materia
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
-export default function MenuCard({ title, price, image, onQuantityChange }) {
+export default function MenuCard({ title, price, image, onQuantityChange, big }) {
   const [quantity, setQuantity] = useState(0);
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
@@ -47,22 +47,24 @@ export default function MenuCard({ title, price, image, onQuantityChange }) {
           border: '1px solid #2E4265',
         }}
       >
+        {/* Coffee Image */}
         <Box
           component="img"
           src={image}
           alt={title}
           sx={{
-            width: 210,
+            width: 210,   // 👈 only larger if "big" is true
             height: 210,
             borderRadius: '50%',
             objectFit: 'cover',
-            mb: 2,
+            mb: 1.5,
           }}
         />
 
         <Typography variant="subtitle1" fontWeight="bold">{title}</Typography>
         <Typography variant="body2">{price}$</Typography>
 
+        {/* Quantity Stepper */}
         <Box
           sx={{
             width: 224,
@@ -72,7 +74,7 @@ export default function MenuCard({ title, price, image, onQuantityChange }) {
             justifyContent: 'center',
             border: '1px solid #2E4265',
             borderRadius: '30px',
-            mt: 3,
+            mt: 2,
             px: 1,
           }}
         >
@@ -84,15 +86,15 @@ export default function MenuCard({ title, price, image, onQuantityChange }) {
             sx={{
               width: 59,
               height: 39,
-              mx: 1,
+              mx: 2,
               border: '1px solid #2E4265',
               borderRadius: '17.5px',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'center', // ✅ perfectly center number
             }}
           >
-            <Typography>{quantity}</Typography>
+            <Typography sx={{ fontWeight: 'bold' }}>{quantity}</Typography>
           </Box>
 
           <IconButton size="small" onClick={handleIncrease}>

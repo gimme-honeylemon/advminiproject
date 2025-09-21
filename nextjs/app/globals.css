@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap');
+
 :root {
   --background: #FCFAF8;
   --foreground: #171717;
+  --primary-blue: #2E4265;
+  --secondary-blue: #8C9EBE;
+  --light-blue: #A8B8D8;
+  --text-gray: #4A5568;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,6 +39,29 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Ensure smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary-blue);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-blue);
 }
 
 @media (prefers-color-scheme: dark) {

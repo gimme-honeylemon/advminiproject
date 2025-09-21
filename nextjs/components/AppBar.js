@@ -13,14 +13,23 @@ export default function ButtonAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar sx={{ backgroundColor: "#8C9EBE", height: "100px" , position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1100}}>
+      <AppBar sx={{ 
+        backgroundColor: "#8C9EBE", 
+        height: "100px", 
+        position: 'fixed', 
+        top: 0, 
+        left: 0, 
+        right: 0, 
+        zIndex: 1100,
+        boxShadow: 'none'
+      }}>
         <Toolbar
           sx={{
             display: "flex",
             justifyContent: "center",
-            alignItems: "center", // ✅ centers vertically
-            gap: "140px",
-            height: "100%", // ✅ ensures full height usage
+            alignItems: "center",
+            gap: "60px",
+            height: "100px"
           }}
         >
           <Button
