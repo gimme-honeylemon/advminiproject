@@ -40,7 +40,10 @@ export default function MenuGrid() {
         
         {/* Cart */}
         <Box sx={{ position: 'relative' }}>
-          <IconButton sx={{ color: "#2E4265" }}>
+          <IconButton 
+            onClick={() => router.push("/cart")} 
+            sx={{ color: "#2E4265" }}
+          >
             <ShoppingCartIcon fontSize="large" />
           </IconButton>
 
