@@ -51,38 +51,50 @@ export default function CartPage() {
       sx={{
         minHeight: '100vh',
         backgroundColor: '#FCFAF8',
-        padding: 3
+        padding: 0
       }}
     >
-      <Container maxWidth="md">
-        {/* Header */}
-        <Box sx={{ textAlign: 'center', marginBottom: 4 }}>
-          <Typography
-            variant="h2"
-            sx={{
-              fontFamily: "'Poppins', sans-serif",
-              color: "#2E4265",
-              marginBottom: 2,
-              textShadow: "2px 2px 4px rgba(1, 1, 1, 0.2)",
-            }}
-          >
-            L'heure bleue
-          </Typography>
-          
-          <Button
-            startIcon={<ArrowBack />}
-            onClick={handleContinueShopping}
-            sx={{
-              color: "#2E4265",
-              textTransform: 'none',
-              fontSize: '1rem',
-              marginBottom: 3
-            }}
-          >
-            Continue Shopping
-          </Button>
-        </Box>
+      {/* Header */}
+      <Box
+        sx={{
+          backgroundColor: '#8C9EBE',
+          padding: 3,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between'
+        }}
+      >
+        <Button
+          startIcon={<ArrowBack />}
+          onClick={handleContinueShopping}
+          sx={{
+            color: "#2E4265",
+            textTransform: 'none',
+            fontSize: '1rem',
+            fontWeight: 'bold'
+          }}
+        >
+          Continue Shopping
+        </Button>
+        
+        <Typography
+          variant="h2"
+          sx={{
+            fontFamily: "'Poppins', sans-serif",
+            color: "#2E4265",
+            textShadow: "2px 2px 4px rgba(1, 1, 1, 0.2)",
+            position: 'absolute',
+            left: '50%',
+            transform: 'translateX(-50%)'
+          }}
+        >
+          L'heure bleue
+        </Typography>
 
+        <Box sx={{ width: 120 }} /> {/* Spacer for centering */}
+      </Box>
+
+      <Container maxWidth="md" sx={{ padding: 3 }}>
         {/* Shopping Cart Title */}
         <Typography
           variant="h3"
@@ -106,7 +118,7 @@ export default function CartPage() {
             fontSize: '1.1rem'
           }}
         >
-          You have {totalItems} {totalItems === 1 ? 'item' : 'items'} in your cart.
+          You have <span style={{ color: '#FF6B6B' }}>{totalItems}</span> <span style={{ color: '#FF6B6B' }}>{totalItems === 1 ? 'item' : 'items'}</span> in your cart.
         </Typography>
 
         {/* Empty Cart State */}
@@ -115,24 +127,25 @@ export default function CartPage() {
             sx={{
               textAlign: 'center',
               padding: 6,
-              backgroundColor: "#E0EBFF",
-              borderRadius: 6,
+              backgroundColor: '#8C9EBE',
+              borderRadius: 3,
               marginBottom: 4,
-              boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+              opacity: 0.8
             }}
           >
             <ShoppingCartOutlined
               sx={{
                 fontSize: 80,
-                color: "#8C9EBE",
+                color: "#2E4265",
                 marginBottom: 2
               }}
             />
             <Typography
               variant="h5"
               sx={{
-                color: "#666",
-                fontFamily: "'Poppins', sans-serif"
+                color: "#2E4265",
+                fontFamily: "'Poppins', sans-serif",
+                fontWeight: 'bold'
               }}
             >
               No item in your cart yet :(
@@ -254,12 +267,12 @@ export default function CartPage() {
         {/* Cart Footer */}
         <Box
           sx={{
-            backgroundColor: 'white',
+            backgroundColor: '#8C9EBE',
             borderRadius: 3,
             padding: 3,
-            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
             position: 'sticky',
-            bottom: 20
+            bottom: 20,
+            opacity: 0.8
           }}
         >
           <Grid container alignItems="center" justifyContent="space-between">
