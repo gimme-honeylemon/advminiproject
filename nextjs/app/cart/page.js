@@ -115,8 +115,8 @@ export default function CartPage() {
             sx={{
               textAlign: 'center',
               padding: 6,
-              backgroundColor: 'white',
-              borderRadius: 3,
+              backgroundColor: "#E0EBFF",
+              borderRadius: 6,
               marginBottom: 4,
               boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
             }}
