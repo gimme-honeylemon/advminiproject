@@ -36,7 +36,7 @@ export default function MenuCard({ title, price, image, onQuantityChange }) {
         sx={{
           width: 380,
           height: 410,
-          borderRadius: 4,
+          borderRadius: 20,
           textAlign: 'center',
           p: 2,
           display: 'flex',

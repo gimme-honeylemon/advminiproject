@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import { Box, IconButton } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/navigation";
@@ -35,47 +35,63 @@ export default function MenuGrid() {
 
   return (
     <Box sx={{ px: 2, py: 2 }}>
-      {/* Header with icons */}
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 3, mb: 3 }}>
+      {/* Header with centered logo */}
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
         
-        {/* Cart */}
-        <Box sx={{ position: 'relative' }}>
-          <IconButton 
-            onClick={() => router.push("/cart")} 
-            sx={{ color: "#2E4265" }}
-          >
-            <ShoppingCartIcon fontSize="large" />
+        {/* Left placeholder to balance the centered logo */}
+        <Box sx={{ width: 120 }} /> {/* same width as icons container */}
+
+        {/* Centered Logo / Title */}
+        <Typography
+          variant="h4"
+          sx={{
+            fontFamily: "'Poppins', sans-serif",
+            color: "#2E4265",
+            fontWeight: 'bold',
+            textShadow: "1px 1px 2px rgba(1, 1, 1, 0.2)",
+            textAlign: 'center',
+            flexGrow: 1,
+          }}
+        >
+          L'heure bleue
+        </Typography>
+
+        {/* Icons on right */}
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, width: 120, justifyContent: 'flex-end' }}>
+          {/* Cart */}
+          <Box sx={{ position: 'relative' }}>
+            <IconButton onClick={() => router.push("/cart")} sx={{ color: "#2E4265" }}>
+              <ShoppingCartIcon fontSize="large" />
+            </IconButton>
+            {totalItems > 0 && (
+              <Box
+                sx={{
+                  position: 'absolute',
+                  top: -5,
+                  right: -5,
+                  backgroundColor: "#2E4265",
+                  color: "white",
+                  borderRadius: "50%",
+                  minWidth: 20,
+                  height: 20,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "0.75rem",
+                  fontWeight: "bold",
+                  px: 0.5,
+                }}
+              >
+                {totalItems}
+              </Box>
+            )}
+          </Box>
+
+          {/* Home */}
+          <IconButton onClick={() => router.push("/")} sx={{ color: "#2E4265" }}>
+            <HomeIcon fontSize="large" />
           </IconButton>
-
-          {/* Overlapping badge */}
-          {totalItems > 0 && (
-            <Box
-              sx={{
-                position: 'absolute',
-                top: -5,
-                right: -5,
-                backgroundColor: "#2E4265",
-                color: "white",
-                borderRadius: "50%",
-                minWidth: 20,
-                height: 20,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "0.75rem",
-                fontWeight: "bold",
-                px: 0.5,
-              }}
-            >
-              {totalItems}
-            </Box>
-          )}
         </Box>
-
-        {/* Home */}
-        <IconButton onClick={() => router.push("/")} sx={{ color: "#2E4265" }}>
-          <HomeIcon fontSize="large" />
-        </IconButton>
       </Box>
 
       {/* Menu Grid */}
@@ -88,6 +104,7 @@ export default function MenuGrid() {
             md: "repeat(3, 1fr)",
           },
           gap: 3,
+          justifyItems: 'center',
         }}
       >
         {menuItems.map((item, index) => (

@@ -1,18 +1,19 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
 
-import { Button, Box } from "@mui/material";
-
-import Header from "@/components/header"
-import MenuCard from "@/components/MenuCard";
-import Logintextbox from "@/components/Logintextbox";
-import Carticon from "@/components/Carticon";
+import { Box } from "@mui/material";
+import ButtonAppBar from "@/components/AppBar";
+import Reader from "@/components/Header"; // fixed path
 
 export default function Home() {
   return (
-    <>
-      <Header />
+    <Box>
+      {/* AppBar only on Home */}
+      <ButtonAppBar />
+      <Box>
+        <Reader/>
+        </Box>
 
-    </>
+
+    </Box>
   );
 }
