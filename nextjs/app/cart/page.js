@@ -18,30 +18,8 @@ import { useRouter } from "next/navigation";
 export default function CartPage() {
   const router = useRouter();
   
-  // Sample cart items - in a real app, this would come from state management
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "Black coffee",
-      price: 10,
-      quantity: 0,
-      image: "/pics/black_coffee.png"
-    },
-    {
-      id: 2,
-      name: "Cha",
-      price: 12,
-      quantity: 0,
-      image: "/pics/Matcha.png"
-    },
-    {
-      id: 3,
-      name: "Latte",
-      price: 15,
-      quantity: 0,
-      image: "/pics/Latte.png"
-    }
-  ]);
+  // Cart items - starts empty, items will be added from menu page
+  const [cartItems, setCartItems] = useState([]);
 
   const updateQuantity = (id, change) => {
     setCartItems(items =>
@@ -164,7 +142,7 @@ export default function CartPage() {
 
         {/* Cart Items */}
         <Box sx={{ marginBottom: 4 }}>
-          {cartItems.map((item) => (
+          {cartItems.filter(item => item.quantity > 0).map((item) => (
             <Card
               key={item.id}
               sx={{
