@@ -27,15 +27,9 @@ export default function ButtonAppBar() {
           sx={{
             display: "flex",
             justifyContent: "center",
-<<<<<<< HEAD
-            alignItems: "center", // ✅ centers vertically
-            gap: "140px",
-            height: "64px", // ✅ ensures full height usage
-=======
             alignItems: "center",
             gap: "60px",
             height: "100px"
->>>>>>> 28d8be364edfee7e796d56c69da8829d9669bd0e
           }}
         >
           <Button
