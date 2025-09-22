@@ -2,8 +2,9 @@ from typing import Union
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from database import *
-from routes.quipment_stock import router
+from routes.orders import router as orders_router
 from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
 app.add_middleware(
@@ -13,7 +14,9 @@ app.add_middleware(
         allow_methods=["*"],     
         allow_headers=["*"],    
     )
-app.include_router(router, prefix="/api")
+
+app.include_router(orders_router)
+
 
 @app.on_event("startup")
 async def startup():

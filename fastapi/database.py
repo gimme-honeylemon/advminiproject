@@ -1,10 +1,19 @@
-import databases
-import sqlalchemy
+import os
+from databases import Database
 
-DATABASE_URL = "postgresql://postgres:postgres@db:5432/equipment_db"
+POSTGRES_USER = os.getenv("POSTGRES_USER", "temp")
+POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", "temp")
+POSTGRES_DB = os.getenv("POSTGRES_DB", "advcompro")
+POSTGRES_HOST = os.getenv("POSTGRES_HOST", "db")
 
-database = databases.Database(DATABASE_URL)
-metadata = sqlalchemy.MetaData()
+DATABASE_URL = f"postgresql+asyncpg://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}/{POSTGRES_DB}"
 
-engine = sqlalchemy.create_engine(DATABASE_URL)
-metadata.create_all(engine)
+database = Database(DATABASE_URL)
+
+async def connect_db():
+    await database.connect()
+    print("Database connected")
+
+async def disconnect_db():
+    await database.disconnect()
+    print("Database disconnected")
