@@ -3,6 +3,7 @@
 import { Box } from "@mui/material";
 import ButtonAppBar from "@/components/AppBar";
 import Reader from "@/components/Header"; // fixed path
+import Typography from '@mui/material/Typography';
 
 export default function Home() {
   return (
@@ -11,9 +12,10 @@ export default function Home() {
       <ButtonAppBar />
       <Box>
         <Reader/>
+        <Typography variant="h4" align="center" gutterBottom>
+          Welcome to the Home Page
+        </Typography>
         </Box>
-
-
-    </Box>
+      </Box>
   );
 }

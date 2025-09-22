@@ -20,7 +20,7 @@ export default function ButtonAppBar() {
             justifyContent: "center",
             alignItems: "center", // ✅ centers vertically
             gap: "140px",
-            height: "100%", // ✅ ensures full height usage
+            height: "64px", // ✅ ensures full height usage
           }}
         >
           <Button
