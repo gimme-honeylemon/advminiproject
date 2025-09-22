@@ -11,16 +11,15 @@ export default function MenuGrid() {
   const router = useRouter();
 
   const menuItems = [
-    { title: "Coffee", price: 5, image: "/images/coffee.jpg" },
-    { title: "Tea", price: 4, image: "/images/tea.jpg" },
-    { title: "Cake", price: 6, image: "/images/cake.jpg" },
-    { title: "Croissant", price: 3, image: "/images/croissant.jpg" },
-    { title: "Sandwich", price: 7, image: "/images/sandwich.jpg" },
-    { title: "Juice", price: 4, image: "/images/juice.jpg" },
-    { title: "Smoothie", price: 6, image: "/images/smoothie.jpg" },
-    { title: "Muffin", price: 3, image: "/images/muffin.jpg" },
-    { title: "Bagel", price: 4, image: "/images/bagel.jpg" },
-    { title: "Pancake", price: 5, image: "/images/pancake.jpg" },
+    { title: "Americano", price: 10, image: "/Americano-.png" },
+    { title: "Espresso", price: 15, image: "/Espresso.png" },
+    { title: "Black Coffee", price: 10, image: "/Black Coffee.png" },
+    { title: "Latte", price: 15, image: "/Latte.png" },
+    { title: "Cappuccino", price: 20, image: "/Cappuccino.png" },
+    { title: "Mocha", price: 10, image: "/Mocha.png", big: true }, // 👈 only Mocha bigger
+    { title: "Macchiato", price: 20, image: "/Macchiato.png" },
+    { title: "Flat White", price: 18, image: "/Flat White.png" },
+    { title: "Matcha Latte", price: 20, image: "/Matcha.png" },
   ];
 
   const [totalQuantity, setTotalQuantity] = useState(Array(menuItems.length).fill(0));
@@ -35,13 +34,9 @@ export default function MenuGrid() {
 
   return (
     <Box sx={{ px: 2, py: 2 }}>
-      {/* Header with centered logo */}
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
-        
-        {/* Left placeholder to balance the centered logo */}
-        <Box sx={{ width: 120 }} /> {/* same width as icons container */}
-
-        {/* Centered Logo / Title */}
+      {/* Header */}
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 9 }}>
+        <Box sx={{ width: 120 }} />
         <Typography
           variant="h4"
           sx={{
@@ -55,10 +50,7 @@ export default function MenuGrid() {
         >
           L'heure bleue
         </Typography>
-
-        {/* Icons on right */}
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, width: 120, justifyContent: 'flex-end' }}>
-          {/* Cart */}
           <Box sx={{ position: 'relative' }}>
             <IconButton onClick={() => router.push("/cart")} sx={{ color: "#2E4265" }}>
               <ShoppingCartIcon fontSize="large" />
@@ -86,8 +78,6 @@ export default function MenuGrid() {
               </Box>
             )}
           </Box>
-
-          {/* Home */}
           <IconButton onClick={() => router.push("/")} sx={{ color: "#2E4265" }}>
             <HomeIcon fontSize="large" />
           </IconButton>
@@ -98,11 +88,7 @@ export default function MenuGrid() {
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: {
-            xs: "1fr",
-            sm: "repeat(2, 1fr)",
-            md: "repeat(3, 1fr)",
-          },
+          gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)", md: "repeat(3, 1fr)" },
           gap: 3,
           justifyItems: 'center',
         }}
@@ -113,6 +99,7 @@ export default function MenuGrid() {
             title={item.title}
             price={item.price}
             image={item.image}
+            big={item.big || false}   // 👈 pass Mocha flag
             onQuantityChange={(q) => handleQuantityChange(index, q)}
           />
         ))}
