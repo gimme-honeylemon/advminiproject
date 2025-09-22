@@ -3,16 +3,11 @@
 import { Box, Typography, Button, Container } from "@mui/material";
 import { Playfair_Display, Poppins } from 'next/font/google';
 import ButtonAppBar from "@/components/AppBar";
-<<<<<<< HEAD
-import Reader from "@/components/Header"; // fixed path
-import Typography from '@mui/material/Typography';
-=======
 import { useRouter } from "next/navigation";
 
 // Font configurations
 const playfair = Playfair_Display({ subsets: ['latin'], weight: ['400', '700'] });
 const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500', '600', '700'] });
->>>>>>> 28d8be364edfee7e796d56c69da8829d9669bd0e
 
 export default function Home() {
   const router = useRouter();
@@ -21,15 +16,6 @@ export default function Home() {
     <Box sx={{ minHeight: '100vh', backgroundColor: '#FCFAF8' }}>
       {/* AppBar with 100px height and 20px fonts */}
       <ButtonAppBar />
-<<<<<<< HEAD
-      <Box>
-        <Reader/>
-        <Typography variant="h4" align="center" gutterBottom>
-          Welcome to the Home Page
-        </Typography>
-        </Box>
-      </Box>
-=======
       
       {/* Main content with top padding to account for fixed AppBar */}
       <Box sx={{ pt: '100px' }}>
@@ -221,6 +207,5 @@ export default function Home() {
         </Box>
       </Box>
     </Box>
->>>>>>> 28d8be364edfee7e796d56c69da8829d9669bd0e
   );
 }
