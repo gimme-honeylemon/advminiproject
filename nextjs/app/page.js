@@ -22,18 +22,21 @@ export default function Home() {
         {/* Hero Section */}
         <Box sx={{ 
           display: 'flex', 
+          alignItems: 'center',   // ✅ keeps left + right panels vertically centered
           minHeight: 'calc(100vh - 100px)',
           backgroundColor: '#FCFAF8'
         }}>
           {/* Left Panel - Coffee Image */}
           <Box sx={{
+            left: -30,
+            width: '700px',
+            height: '600px',
             flex: 1,
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'flex-start',
-            padding: '60px',
+            justifyContent: 'center',
+            borderRadius: '60px',
             backgroundColor: '#A8B8D8',
-            position: 'relative'
           }}>
             {/* Coffee Image from public folder */}
             <Box
@@ -41,11 +44,12 @@ export default function Home() {
               src="/image.png"
               alt="Iced Coffee"
               sx={{
+                alignItems: 'center',
+                justifyContent: 'center',
                 width: '400px',
                 height: '500px',
                 objectFit: 'cover',
                 borderRadius: '60px',
-                backgroundColor: '#E8F0FF'
               }}
               onError={(e) => {
                 // Fallback if image doesn't exist
