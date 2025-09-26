@@ -1,27 +1,30 @@
 /** @type {import('next').NextConfig} */
 
-const API_URL = "http://fastapi:8000";
+const API_URL = process.env.API_URL || "http://localhost:8000";  // Use environment variable or fallback to default
 
 const nextConfig = {
   reactStrictMode: true,
-  // output: 'export',
+  // output: 'export', // Uncomment if exporting as a static site
   images: {
-    unoptimized: true,
+    unoptimized: true,  // Disable image optimization if needed
   },
   async rewrites() {
     return [
       {
-        source: "/api/:path*",
+        source: "/api/:path*",  // Rewrite API calls to backend
         destination: `${API_URL}/api/:path*`,
       },
     ];
   },
-  webpackDevMiddleware: config => {
-    config.watchOptions = {
-      poll: 800,
-      aggregateTimeout: 300,
+  webpack(config, { isServer }) {
+    // Customize Webpack behavior here
+    if (!isServer) {
+      config.watchOptions = {
+        poll: 800,  // Polling interval, adjust as necessary
+        aggregateTimeout: 300,  // Delay after changes before rebuilding
+      };
     }
-    return config
+    return config;
   },
 };
 
