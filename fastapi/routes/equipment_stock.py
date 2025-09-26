@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from database import database
-
+from datetime import datetime
 router = APIRouter(tags=["equipment_stock"])
 
 class EquipmentStockCreate(BaseModel):
@@ -14,7 +14,7 @@ class EquipmentStockOut(BaseModel):
   equipment_name: str
   quantity: int
   location: str = None
-  updated_at: str
+  updated_at: datetime
 
 # Create
 @router.post("/equipment_stock/", response_model=EquipmentStockOut)

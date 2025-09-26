@@ -2,7 +2,7 @@ from typing import Union
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from database import *
-from routes.quipment_stock import router
+from routes.equipment_stock import router
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
