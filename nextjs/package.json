@@ -9,16 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "next": "15.5.3",
-    "@mui/material": "^5.15.13",
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.4",
-    "@mui/icons-material": "^5.14.0",
-    "@mui/x-data-grid": "^7.15.0"
-=======
     "@emotion/cache": "^11.13.1",
     "@emotion/react": "^11.13.3",
     "@emotion/server": "^11.11.0",
@@ -39,7 +29,6 @@
     "react-dom": "18.2.0",
     "sweetalert2": "^11.12.4",
     "zustand": "^4.5.4"
->>>>>>> 26ad5d7ba5547b62793aef8a2854c739d1b12759
   },
   "devDependencies": {
     "eslint": "^9",

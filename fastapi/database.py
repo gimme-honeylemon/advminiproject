@@ -34,6 +34,9 @@ async def disconnect_db() -> None:
 # -------------------
 async def init_db() -> None:
     await _create_products_table()
+    await _create_users_table()
+    await _create_order_detail_table()
+    await _create_order_history_table()
     logger.info("Database initialized successfully.")
 
 
@@ -49,3 +52,47 @@ async def _create_products_table() -> None:
     """
     await database.execute(query=query)
     logger.info("Products table created (or already exists).")
+
+
+async def _create_users_table() -> None:
+    query = """
+    CREATE TABLE IF NOT EXISTS users (
+        user_id SERIAL PRIMARY KEY,
+        name TEXT NOT NULL,
+        email TEXT UNIQUE NOT NULL,
+        password_hash TEXT NOT NULL
+    )
+    """
+    await database.execute(query=query)
+    logger.info("Users table created (or already exists).")
+
+
+async def _create_order_detail_table() -> None:
+    query = """
+    CREATE TABLE IF NOT EXISTS order_detail (
+        order_id SERIAL PRIMARY KEY,
+        user_id INT NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
+        status TEXT NOT NULL,
+        item_id INT NOT NULL REFERENCES products(id) ON DELETE CASCADE,
+        quantity INT NOT NULL,
+        total_price FLOAT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+    """
+    await database.execute(query=query)
+    logger.info("Order_detail table created (or already exists).")
+
+
+async def _create_order_history_table() -> None:
+    query = """
+    CREATE TABLE IF NOT EXISTS order_history (
+        history_id SERIAL PRIMARY KEY,
+        order_id INT NOT NULL REFERENCES order_detail(order_id) ON DELETE CASCADE,
+        user_id INT NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
+        status TEXT NOT NULL,
+        timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+    """
+    await database.execute(query=query)
+    logger.info("Order_history table created (or already exists).")
+

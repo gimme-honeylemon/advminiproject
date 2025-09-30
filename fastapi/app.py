@@ -1,6 +1,9 @@
 from fastapi import FastAPI, HTTPException
 from database import *
 from routes.products import router as products_router
+from routes.users import router as users_router
+from routes.order_detail import router as detail_router
+from routes.order_history import router as history_router
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -13,6 +16,9 @@ app.add_middleware(
     )
 
 app.include_router(products_router)
+app.include_router(users_router)
+app.include_router(detail_router)
+app.include_router(history_router)
 
 @app.on_event("startup")
 async def startup():

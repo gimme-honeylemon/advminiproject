@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 
-const API_URL = process.env.API_URL || "http://localhost:8000";  // Use environment variable or fallback to default
+const API_URL = process.env.API_URL || "http://localhost:8008";  // Use environment variable or fallback to default
 
 const nextConfig = {
   reactStrictMode: true,
