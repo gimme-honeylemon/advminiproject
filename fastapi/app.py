@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from database import *
-from routes.products import router as products_router
+from routes.menu import router as menu_router
 from routes.users import router as users_router
 from routes.order_detail import router as detail_router
 from routes.order_history import router as history_router
@@ -15,7 +15,7 @@ app.add_middleware(
         allow_headers=["*"],    
     )
 
-app.include_router(products_router)
+app.include_router(menu_router)
 app.include_router(users_router)
 app.include_router(detail_router)
 app.include_router(history_router)

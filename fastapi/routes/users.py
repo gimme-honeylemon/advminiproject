@@ -1,8 +1,13 @@
 import logging
-from fastapi import APIRouter, HTTPException
-from queries.users import *
+from fastapi import APIRouter, HTTPException, status, Depends
+from queries.users import (
+    insert_user,
+    get_user_by_username,
+    delete_user,
+)
 from pydantic import BaseModel, EmailStr
-from typing import List
+from typing import Optional
+from auth.auth import verify_password, create_access_token, get_current_user
 
 router = APIRouter(prefix="/users", tags=["Users"])
 logging.basicConfig(level=logging.INFO)
@@ -23,35 +28,95 @@ class UserCreate(BaseModel):
     password_hash: str
 
 
-# ---------------- Routes ---------------- #
+class UserLogin(BaseModel):
+    username: str
+    password: str
+    remember_me: Optional[bool] = False
 
-# Add user
-@router.post("/", response_model=User)
-async def add_user(new_user: UserCreate):
+
+class UserOut(BaseModel):
+    user_id: int
+    name: str
+    email: EmailStr
+
+
+# ---------------- Routes ---------------- #
+# Sign up
+@router.post("/register", response_model=UserOut)
+async def signup_route(new_user: UserCreate):
+    logger.info("Signing up new user")
     result = await insert_user(
         name=new_user.name,
         email=new_user.email,
-        password_hash=new_user.password_hash,
+        password_hash=new_user.password_hash,  # stored as plain text
     )
     if result is None:
-        raise HTTPException(status_code=400, detail="User not created")
+        logger.warning("User not created")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="User not created"
+        )
     logger.info(f"User created: {result}")
     return result
 
 
-# Get all users
-@router.get("/", response_model=List[User])
-async def get_users():
-    logger.info("Fetching all users")
-    return await get_all_users()
+# Sign in
+# @router.post("/signin")
+# async def signin_route(user: UserLogin):
+#     logger.info("Signing in...")
+#     user_data = await get_user_by_username(user.username)
+#     if not user_data:
+#         logger.warning("User not found")
+#         raise HTTPException(
+#             status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found"
+#         )
+#     if user.password != user_data["password_hash"]:
+#         logger.warning("Invalid credentials")
+#         raise HTTPException(
+#             status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials"
+#         )
 
+#     logger.info(f"Login successful for {user_data['user_id']}")
+#     return {"username": user_data["name"]}
 
-# Get single user by ID
-@router.get("/{user_id}", response_model=User)
-async def get_user(user_id: int):
-    result = await query_get_user(user_id)
-    if result is None:
-        logger.warning(f"User with ID {user_id} not found")
-        raise HTTPException(status_code=404, detail="User not found")
-    logger.info(f"User fetched: {result}")
-    return result
+# Sign-in endpoint
+@router.post("/signin")
+async def signin_route(user: UserLogin):
+    logger.info("Signing in...")
+    user_data = await get_user_by_username(user.username)
+    if not user_data:
+        logger.warning("User not found")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found"
+        )
+    if not verify_password(user.password, user_data["password_hash"]):
+        logger.warning("Invalid credentials")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials"
+        )
+    access_token = create_access_token(
+        data={"sub": str(user_data["user_id"])}, remember_me=user.remember_me
+    )
+    logger.info(f"Login successful for {user_data['user_id']}")
+    return {
+        "access_token": access_token,
+        "token_type": "bearer",
+        "username": user_data["name"],
+    }
+
+# Delete account
+@router.delete("/delete_account", response_model=UserOut)
+async def delete_user_route(user_id: int):
+    """
+    Deletes a user by ID. 
+    Currently no auth dependency, so client must provide user_id directly.
+    """
+    logger.info(f"Deleting user {user_id}")
+    deleted_user = await delete_user(user_id)
+    if not deleted_user:
+        logger.warning("Failed to delete user or user not found")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Failed to delete user or user not found",
+        )
+    logger.info(f"User deleted: {deleted_user}")
+    return deleted_user

@@ -14,7 +14,7 @@ async def insert_product(product: str, quantity: int, price: float):
 # ---------------- Get All ---------------- #
 async def get_all_products():
     query = "SELECT id, product, quantity, price FROM products"
-    return await database.fetch_all(query=query)
+    # return await database.fetch_all(query=query)
 
 
 # ---------------- Get by ID ---------------- #

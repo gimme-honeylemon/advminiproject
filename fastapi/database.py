@@ -33,25 +33,27 @@ async def disconnect_db() -> None:
 # Table creation
 # -------------------
 async def init_db() -> None:
-    await _create_products_table()
+    # await _create_products_table()
     await _create_users_table()
+    await _create_menu_table()
     await _create_order_detail_table()
     await _create_order_history_table()
+    
     logger.info("Database initialized successfully.")
 
 
 # ---------------- Table Creation ---------------- #
-async def _create_products_table() -> None:
-    query = """
-    CREATE TABLE IF NOT EXISTS products (
-        id SERIAL PRIMARY KEY,
-        product TEXT NOT NULL,
-        quantity INTEGER NOT NULL,
-        price FLOAT NOT NULL
-    )
-    """
-    await database.execute(query=query)
-    logger.info("Products table created (or already exists).")
+# async def _create_products_table() -> None:
+#     query = """
+#     CREATE TABLE IF NOT EXISTS products (
+#         id SERIAL PRIMARY KEY,
+#         product TEXT NOT NULL,
+#         quantity INTEGER NOT NULL,
+#         price FLOAT NOT NULL
+#     )
+#     """
+#     await database.execute(query=query)
+#     logger.info("Products table created (or already exists).")
 
 
 async def _create_users_table() -> None:
@@ -73,7 +75,7 @@ async def _create_order_detail_table() -> None:
         order_id SERIAL PRIMARY KEY,
         user_id INT NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
         status TEXT NOT NULL,
-        item_id INT NOT NULL REFERENCES products(id) ON DELETE CASCADE,
+        item_id INT NOT NULL REFERENCES menu(id) ON DELETE CASCADE,
         quantity INT NOT NULL,
         total_price FLOAT NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -95,4 +97,15 @@ async def _create_order_history_table() -> None:
     """
     await database.execute(query=query)
     logger.info("Order_history table created (or already exists).")
+
+async def _create_menu_table() -> None:
+    query = """
+    CREATE TABLE IF NOT EXISTS menu (
+        id SERIAL PRIMARY KEY,
+        product TEXT NOT NULL,
+        price NUMERIC(10, 2) NOT NULL
+    )
+    """
+    await database.execute(query=query)
+    logger.info("Menu table created (or already exists).")
 

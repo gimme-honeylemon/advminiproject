@@ -2,7 +2,7 @@ import logging
 from fastapi import APIRouter, HTTPException
 from queries.order_history import *
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 from datetime import datetime
 
 router = APIRouter(prefix="/order_history", tags=["Order History"])
