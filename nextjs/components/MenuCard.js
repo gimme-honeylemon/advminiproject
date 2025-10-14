@@ -1,118 +1,57 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { Card, Typography, Box, IconButton, Snackbar, Alert } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
+import { Box, Typography, Button, Card, CardContent, CardMedia } from "@mui/material";
+import { Add, Remove } from "@mui/icons-material";
 
-export default function MenuCard({ title, price, image, onQuantityChange, big }) {
-  const [quantity, setQuantity] = useState(0);
-  const [openSnackbar, setOpenSnackbar] = useState(false);
-
-  const handleIncrease = () => {
-    if (quantity < 20) {
-      const newQuantity = quantity + 1;
-      setQuantity(newQuantity);
-      onQuantityChange(newQuantity); // immediately notify parent
-    } else {
-      setOpenSnackbar(true);
-    }
-  };
-
-  const handleDecrease = () => {
-    const newQuantity = Math.max(quantity - 1, 0);
-    setQuantity(newQuantity);
-    onQuantityChange(newQuantity); // immediately notify parent
-  };
-
-  const handleCloseSnackbar = (_event, reason) => {
-    if (reason === 'clickaway') return;
-    setOpenSnackbar(false);
-  };
-
+export default function MenuCard({
+  title,
+  price,
+  image,
+  quantity,
+  onQuantityChange,
+  onOrder,
+}) {
   return (
-    <>
-      <Card
-        sx={{
-          width: 380,
-          height: 410,
-          borderRadius: 20,
-          textAlign: 'center',
-          p: 2,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: 1,
-          border: '1px solid #2E4265',
-        }}
-      >
-        {/* Coffee Image */}
-        <Box
-          component="img"
-          src={image}
-          alt={title}
-          sx={{
-            width: 210,   // 👈 only larger if "big" is true
-            height: 210,
-            borderRadius: '50%',
-            objectFit: 'cover',
-            mb: 1.5,
-          }}
-        />
+    <Card
+      sx={{
+        width: 260,
+        borderRadius: 4,
+        boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+        textAlign: "center",
+      }}
+    >
+      <CardMedia
+        component="img"
+        height="180"
+        image={image}
+        alt={title}
+        sx={{ objectFit: "cover" }}
+      />
+      <CardContent>
+        <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1, color: "#2E4265" }}>
+          {title}
+        </Typography>
+        <Typography sx={{ color: "#2E4265", mb: 2 }}>${price}</Typography>
 
-        <Typography variant="subtitle1" fontWeight="bold">{title}</Typography>
-        <Typography variant="body2">{price}$</Typography>
-
-        {/* Quantity Stepper */}
-        <Box
-          sx={{
-            width: 224,
-            height: 56,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            border: '1px solid #2E4265',
-            borderRadius: '30px',
-            mt: 2,
-            px: 1,
-          }}
-        >
-          <IconButton size="small" onClick={handleDecrease}>
-            <RemoveIcon fontSize="small" />
-          </IconButton>
-
-          <Box
-            sx={{
-              width: 59,
-              height: 39,
-              mx: 2,
-              border: '1px solid #2E4265',
-              borderRadius: '17.5px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center', // ✅ perfectly center number
-            }}
+        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", mb: 1 }}>
+          <Button
+            onClick={() => onQuantityChange(Math.max(0, quantity - 1))}
+            sx={{ minWidth: 0, color: "#2E4265" }}
           >
-            <Typography sx={{ fontWeight: 'bold' }}>{quantity}</Typography>
-          </Box>
-
-          <IconButton size="small" onClick={handleIncrease}>
-            <AddIcon fontSize="small" />
-          </IconButton>
+            <Remove />
+          </Button>
+          <Typography sx={{ mx: 2 }}>{quantity}</Typography>
+          <Button
+            onClick={() => {
+              onQuantityChange(quantity + 1);
+              onOrder(); // ✅ adds to cart and updates badge
+            }}
+            sx={{ minWidth: 0, color: "#2E4265" }}
+          >
+            <Add />
+          </Button>
         </Box>
-      </Card>
-
-      <Snackbar
-        open={openSnackbar}
-        autoHideDuration={3000}
-        onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-      >
-        <Alert onClose={handleCloseSnackbar} severity="warning" sx={{ width: '100%' }}>
-          You have reached the maximum order quantity of 20.
-        </Alert>
-      </Snackbar>
-    </>
+      </CardContent>
+    </Card>
   );
 }

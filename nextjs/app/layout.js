@@ -1,5 +1,6 @@
 import { Dancing_Script, Poppins } from "next/font/google";
 import "./globals.css";
+import { AuthContext, AuthProvider } from "../app/contexts/AuthContext";
 
 const dancingScript = Dancing_Script({ variable: "--font-dancing-script", subsets: ["latin"] });
 const poppins = Poppins({
@@ -17,10 +18,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${dancingScript.variable} ${poppins.variable}`}>
-        {/* Main content */}
-        <main>
-          {children}
-        </main>
+        {/* Wrap the entire app with CartProvider */}
+        <AuthProvider> 
+          {/* Main content */}
+          <main>
+            {children}
+          </main>
+        </AuthProvider>
       </body>
     </html>
   );
