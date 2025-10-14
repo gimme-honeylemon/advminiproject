@@ -2,7 +2,7 @@ import logging
 from fastapi import APIRouter, HTTPException
 from queries.order_history import *
 from pydantic import BaseModel
-from typing import List, Optional
+from typing import List
 from datetime import datetime
 
 router = APIRouter(prefix="/order_history", tags=["Order History"])
@@ -30,10 +30,12 @@ class OrderHistoryCreate(BaseModel):
 # Add order history entry
 @router.post("/", response_model=OrderHistory)
 async def add_order_history(new_history: OrderHistoryCreate):
+    timestamp = datetime.utcnow()  # explicitly pass timestamp
     result = await insert_order_history(
         order_id=new_history.order_id,
         user_id=new_history.user_id,
         status=new_history.status,
+        timestamp=timestamp,
     )
     if result is None:
         raise HTTPException(status_code=400, detail="Order history not created")
